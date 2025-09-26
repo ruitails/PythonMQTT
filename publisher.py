@@ -11,22 +11,10 @@ port = config["port"]
 keepalive = config.get("keepalive", 60)
 topic = config["topics"]["vehicle_parameters"]
 
-# Sample JSON payload
-payload = {
-    "AmbientTemperature": 22,
-    "Battery": 80,
-    "CruiseControl": False,
-    "Economy": "Normal",
-    "Engine Temperature": 90,
-    "Gear": "P",
-    "RPM": 0.0,
-    "Range": 320,
-    "ShareLocation": False,
-    "Speed": 0,
-    "SpeedUnit": "km/h",
-    "TemperatureUnit": 0,
-    "TypeOfVehicle": 0
-}
+# Load payload from data.json file
+with open("data.json") as f:
+    payload = json.load(f)
+print(f"Loaded payload from data.json")
 
 # Create MQTT client
 client = mqtt.Client()
